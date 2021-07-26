@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Register</h1>
+    <form action="/users/register" method="POST">
+    <% if(error) { %>
+        <p>
+            <%= error %>
+        </p>
+        <% } %>
+        <input type="text" name="name" placeholder="Enter you name" id="">
+        <input type="email" name="email" placeholder="Enter your email" id="">
+        <input type="password" name="password" placeholder="Enter your password" id="">
+        <input type="text" name="age" placeholder="Enter your age" id="">
+        <input type="text" name="phone" placeholder="Enter your phone" id="">
+        <input type="submit" name="submit" value="submit" id="">
+    </form>
+</body>
+
+</html>
