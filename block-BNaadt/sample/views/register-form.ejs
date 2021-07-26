@@ -9,7 +9,13 @@
 </head>
 
 <body>
+    <h1>Register</h1>
     <form action="/users/register" method="POST">
+    <% if(error) { %>
+        <p>
+            <%= error %>
+        </p>
+        <% } %>
         <input type="text" name="name" placeholder="Enter you name" id="">
         <input type="email" name="email" placeholder="Enter your email" id="">
         <input type="password" name="password" placeholder="Enter your password" id="">

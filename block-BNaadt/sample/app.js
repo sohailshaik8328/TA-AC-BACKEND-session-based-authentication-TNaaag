@@ -5,7 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var mongoose = require('mongoose');
 var session = require('express-session');
-// var MongoStore = require('connect-mongo')(session);
+var MongoStore = require("connect-mongo")(session);
 var flash = require('connect-flash');
 
 
@@ -37,7 +37,7 @@ app.use(session({
   secret : process.env.SECRET,
   resave : false,
   saveUninitialized : false,
-  // store :  new MongoStore({mongooseConnection : mongoose.connection})
+  store :  new MongoStore({mongooseConnection : mongoose.connection})
 
 }))
 

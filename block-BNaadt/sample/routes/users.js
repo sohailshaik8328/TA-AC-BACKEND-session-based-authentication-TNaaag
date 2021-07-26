@@ -10,9 +10,8 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/register', (req, res, next) => {
-  console.log(req.flash('emailError'))
-  console.log(req.flash('passwordError'))
-  res.render('register-form');
+  console.log(req.flash('error'));
+  res.render('register-form', {error : req.flash('error')[0]});
 });
 
 router.get('/login', (req, res, next) => {
@@ -22,18 +21,23 @@ router.get('/login', (req, res, next) => {
 
 router.post('/register', (req, res, next) => {
   User.create(req.body, (err, user) => {
-    if(err) return next(err);
-    console.log(err, user);
+    // if(err) return next(err);
+    if(err) {
+      if(err.name === 'MongoError') {
+        req.flash('error', 'Email is already existed');
+        return res.redirect('/users/register');
+      }
 
-    if(!user.email.includes('@')) {
-      req.flash('emailError', 'email must contain @')
-      res.redirect('/users/register')
-    } else if (user.password.length < 4) {
-      req.flash('passwordError', 'password must contain more than 4 characters');
-      res.redirect('/users/register')
-    }else {
-      res.redirect('/users/login')
+      if(err.name == 'valiationError') {
+        req.flash('error', err.message);
+        return res.redirect('users/register')
+      }
+      
+      return res.json({err})
     }
+
+    res.redirect('/users/login')
+
   })
 })
 
@@ -48,12 +52,14 @@ router.post('/login', (req, res, next) => {
     if(err) return next(err);
 
     if(!user) {
+      req.flash('error', 'Email is not registered');
       return res.redirect('/users/login')
     }
 
     user.verifyPassword(password, (err, result) => {
       if(err) return next(err);
       if(!result) {
+        req.flash('error', 'password is wrong')
        return res.redirect('/users/login');
       }
       
@@ -64,5 +70,11 @@ router.post('/login', (req, res, next) => {
   })
 })
 
+
+router.get('/logout', (req, res) => {
+  req.session.destroy();
+  res.clearCookie('connect-sid');
+  res.redirect('/')
+})
 
 module.exports = router;
