@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+
+<body>
+    <h1>Article Details</h1>
+
+    <a href="/articles">
+        <button>Back</button>
+    </a>
+
+    <h2>
+        <%= article.title %>
+    </h2>
+
+    <p>
+        <%= article.description %>
+    </p>
+
+    <h3>
+        <%= article.author %>
+    </h3>
+
+
+    <a href="/articles/<%= article.slug  %>/edit ">
+        <button>Edit</button>
+    </a>
+
+    <a href="/articles/<%= article.slug  %>/delete ">
+        <button>Delete</button>
+    </a>
+    <p>
+        <%= article.likes %>
+    </p>
+
+    <a href="/articles/<%= article.slug  %>/likes ">
+        <button>Like</button>
+    </a>
+
+    <form action="/articles/<%= article.slug %>/comments" method="POST">
+        <textarea name="text" placeholder="Write Comment" id="" cols="30" rows="4"></textarea>
+        <input type="submit" name="submit" value="Add comment" id="">
+    </form>
+
+    <% article.comments.forEach(comment=> { %>
+        <p>
+            <%= comment.text %>
+        </p>
+        <a href="/comments/<%= comment.id  %>/delete ">
+            <button>Delete Comment</button>
+        </a>
+        <% }) %>
+
+</body>
+
+</html>
