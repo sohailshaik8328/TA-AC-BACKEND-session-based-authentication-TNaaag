@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form action="/products/<%= product.slug  %>/admin-single-product " method="POST">
+        <input type="text" name="name" placeholder="Enter product name" id="" value="<%= product.name  %> ">
+        <input type="text" name="quantity" placeholder="Enter product Quantity" id="" value="<%= product.quantity  %> ">
+        <input type="text" name="price" placeholder="Enter product price" id="" value="<%= product.price  %> ">
+        <input type="text" name="image" placeholder="Enter product image Url" id="" value="<%= product.image  %> ">
+        <input type="submit" name="submit" value="Edit product" id="">
+    </form>
+</body>
+
+</html>
