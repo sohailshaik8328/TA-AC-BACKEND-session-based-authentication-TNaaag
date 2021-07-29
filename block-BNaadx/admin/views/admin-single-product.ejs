@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+
+<body>
+    <h1>Admin Product Details</h1>
+
+    <!-- <a href="/products">
+        <button>Back</button>
+    </a> -->
+
+    <img class="image" src="<%= product.image  %> " alt="">
+
+    <h2>
+        <%= `Name of Product : ${product.name}` %>
+    </h2>
+
+    <p>
+        <%=`Quantity : ${ product.quantity}` %>
+    </p>
+
+    <h3>
+        <%=` price : ${product.price}` %>
+    </h3>
+
+    <a href="/products/<%= product.slug  %>/edit ">
+        <button>Edit</button>
+    </a>
+
+    <a href="/products/<%= product.slug  %>/delete ">
+        <button>Delete</button>
+    </a>
+    <!-- <p>
+        <%= product.likes %>
+    </p> -->
+
+    <!-- <a href="/products/<%= product.slug  %>/likes ">
+        <button>Like</button>
+    </a> -->
+
+    <!-- <form action="/products/<%= product.slug %>/comments" method="POST">
+        <textarea name="text" placeholder="Write Comment" id="" cols="30" rows="4"></textarea>
+        <input type="submit" name="submit" value="Add comment" id="">
+    </form>
+
+    <% product.comments.forEach(comment=> { %>
+        <p>
+            <%= comment.text %>
+        </p>
+        <a href="/comments/<%= comment.id  %>/delete ">
+            <button>Delete Comment</button>
+        </a>
+        <% }) %> -->
+
+</body>
+
+</html>
